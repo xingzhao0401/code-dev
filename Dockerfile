@@ -2,7 +2,7 @@ FROM alpine
 LABEL description="这是一个基于alpine、code-server的开发环境" by="xingzhao0401" email="234454166@qq.com"
 ENV CODE_SERVER_VERSION 3.2.0
 ENV WORKDIR /home/project/
-RUN apk add --no-cache dumb-init nodejs go python &&\
+RUN apk add --no-cache dumb-init nodejs go python3 &&\
     ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2 && \
     mkdir -p $WORKDIR && mkdir -p /workdir && cd /workdir/ && \
    wget https://github.com/cdr/code-server/releases/download/$CODE_SERVER_VERSION/code-server-$CODE_SERVER_VERSION-linux-x86_64.tar.gz && \
