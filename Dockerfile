@@ -22,4 +22,5 @@ ENV PS1 \\u@\\w\\$
 ENV GOPROXY https://goproxy.cn
 ENV CGO_ENABLED 0
 EXPOSE 8080
+WORKDIR $WORKDIR
 CMD ["dumb-init","node","/workdir/code-server/out/node/entry.js","/home/project/","--host","0.0.0.0","--auth","password"]
