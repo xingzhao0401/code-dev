@@ -15,7 +15,7 @@ RUN apk add --no-cache dumb-init nodejs go python3 python3-dev &&\
    node /workdir/code-server/out/node/entry.js --install-extension ../ms-python.vsix &&\
    rm -f code-server-*.tar.gz ms-go.vsix ms-python.vsix &&\
    sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories &&\
-   pip3 install -i http://mirrors.aliyun.com/pypi/simple/
+   mkdir /root/.pip/ && echo [global]>/root/.pip/pip.conf && echo index-url = https://mirrors.aliyun.com/pypi/simple >> /root/.pip/pip.conf
    
 ENV PASSWORD 123456
 ENV PS1 \\u@\\w\\$
