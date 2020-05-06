@@ -3,7 +3,7 @@ LABEL description="这是一个基于ubuntu、code-server的开发环境" by="xi
 ENV CODE_SERVER_VERSION 3.2.0
 ENV WORKDIR /home/project/
 RUN apt-get update &&\
-    apt-get install -y g++ python python-pip python3 python3-pip dumb-init nodejs golang  &&\
+    apt-get install -y g++ python python3 python3-pip dumb-init nodejs golang  &&\
     mkdir -p $WORKDIR && mkdir -p /workdir && cd /workdir/ && \
    wget https://github.com/cdr/code-server/releases/download/$CODE_SERVER_VERSION/code-server-$CODE_SERVER_VERSION-linux-x86_64.tar.gz && \
    tar xzvf code-server-$CODE_SERVER_VERSION-linux-x86_64.tar.gz && \
@@ -28,7 +28,7 @@ RUN apt-get update &&\
    apt-get clean && apt-get autoclean
    
 ENV PASSWORD 123456
-ENV PS1 \\u@\\w\\$
+ENV PS1 '\\u@\\w\\$ '
 ENV GOPROXY https://goproxy.cn
 ENV CGO_ENABLED 0
 EXPOSE 8080
