@@ -1,7 +1,8 @@
 FROM alpine
 ENV CODE_SERVER_VERSION 3.2.0
 RUN apk add --no-cache dumb-init nodejs go gcc python &&\
-    mkdir -p /workdir && cd /workdir/ && \
+    ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2 && \
+    mkdir -p /home/project/ && mkdir -p /workdir && cd /workdir/ && \
    wget https://github.com/cdr/code-server/releases/download/$CODE_SERVER_VERSION/code-server-$CODE_SERVER_VERSION-linux-x86_64.tar.gz && \
    tar xzvf code-server-$CODE_SERVER_VERSION-linux-x86_64.tar.gz && \
    ln -s /workdir/code-server-$CODE_SERVER_VERSION-linux-x86_64 /workdir/code-server && \
@@ -13,7 +14,7 @@ RUN apk add --no-cache dumb-init nodejs go gcc python &&\
    rm -f code-server-*.tar.gz ms-go.vsix ms-python.vsix &&\
    sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 ENV PASSWORD 123456
-ENV PS1 \\u@\\w \\$
+ENV PS1 \\u@\\w\\$
 ENV GOPROXY https://goproxy.cn
 ENV CGO_ENABLED 0
-CMD ["dumb-init","node","/workdir/code-server/out/node/entry.js","/home/project/","--host","0.0.0.0","--auth","password","--disable-ssh"]
+CMD ["dumb-init","node","/workdir/code-server/out/node/entry.js","/home/project/","--host","0.0.0.0","--auth","password"]
