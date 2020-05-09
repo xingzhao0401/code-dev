@@ -26,7 +26,10 @@ RUN apk add --no-cache vim bash go python python-dev py2-pip python3 python3-dev
    node /workdir/code-server/out/node/entry.js --install-extension /workdir/ms-Vue2Snippets.vsix &&\
    node /workdir/code-server/out/node/entry.js --install-extension /workdir/ms-AutoCloseTag.vsix &&\
    node /workdir/code-server/out/node/entry.js --install-extension /workdir/ms-AutoRenameTag.vsix &&\
-   rm -f /workdir/code-server-*.tar.gz /workdir/ms-go.vsix /workdir/ms-python.vsix /workdir/ms-Vetur.vsix /workdir/ms-Vue2Snippets.vsix /workdir/ms-AutoCloseTag.vsix /workdir/ms-AutoRenameTag.vsix
+   rm -f /workdir/code-server-*.tar.gz /workdir/ms-go.vsix /workdir/ms-python.vsix /workdir/ms-Vetur.vsix /workdir/ms-Vue2Snippets.vsix /workdir/ms-AutoCloseTag.vsix /workdir/ms-AutoRenameTag.vsix &&\
+   npm config set registry http://registry.npm.taobao.org &&\
+   sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories &&\
+   mkdir /root/.pip/ && echo [global]>/root/.pip/pip.conf && echo index-url = https://mirrors.aliyun.com/pypi/simple >> /root/.pip/pip.conf
    
 ENV PASSWORD 123456
 ENV PS1 \\u@\\w\\$
