@@ -14,18 +14,20 @@ RUN apk add --no-cache vim bash go python python-dev py2-pip python3 python3-dev
    wget https://github.com/cdr/code-server/releases/download/$CODE_SERVER_VERSION/code-server-$CODE_SERVER_VERSION-linux-x86_64.tar.gz && \
    tar xzvf code-server-$CODE_SERVER_VERSION-linux-x86_64.tar.gz && \
    ln -s /workdir/code-server-$CODE_SERVER_VERSION-linux-x86_64 /workdir/code-server && \
+   rm -f /workdir/code-server/node && \
+   ln -s /usr/bin/node /workdir/code-server/node && \
    wget -O ms-go.vsix https://github.com/microsoft/vscode-go/releases/download/$GO_EXTERN_VERSION/Go-$GO_EXTERN_VERSION.vsix &&\
    wget -O ms-python.vsix https://github.com/microsoft/vscode-python/releases/download/$PYTHON_EXTERN_VERSION/ms-python-release.vsix && \
    wget -O ms-Vetur.vsix  https://github.com/vuejs/vetur/releases/download/v$Vetur_EXTERN_VERSION/vetur-$Vetur_EXTERN_VERSION.vsix &&\
    wget -O ms-Vue2Snippets.vsix https://github.com/hollowtree/vscode-vue-snippets/releases/download/v$Vue2Snippets_EXTERN_VERSION/vue-snippets-$Vue2Snippets_EXTERN_VERSION.vsix &&\
    wget -O ms-AutoCloseTag.vsix  https://github.com/formulahendry/vscode-auto-close-tag/releases/download/$AutoCloseTag_EXTERN_VERSION/auto-close-tag-$AutoCloseTag_EXTERN_VERSION.vsix &&\
    wget -O ms-AutoRenameTag.vsix  https://github.com/formulahendry/vscode-auto-rename-tag/releases/download/$AutoRenameTag_EXTERN_VERSION/auto-rename-tag-$AutoRenameTag_EXTERN_VERSION.vsix &&\
-   node /workdir/code-server/out/node/entry.js --install-extension /workdir/ms-go.vsix &&\
-   node /workdir/code-server/out/node/entry.js --install-extension /workdir/ms-python.vsix &&\
-   node /workdir/code-server/out/node/entry.js --install-extension /workdir/ms-Vetur.vsix &&\
-   node /workdir/code-server/out/node/entry.js --install-extension /workdir/ms-Vue2Snippets.vsix &&\
-   node /workdir/code-server/out/node/entry.js --install-extension /workdir/ms-AutoCloseTag.vsix &&\
-   node /workdir/code-server/out/node/entry.js --install-extension /workdir/ms-AutoRenameTag.vsix &&\
+   /workdir/code-server/code-server --install-extension /workdir/ms-go.vsix &&\
+   /workdir/code-server/code-server --install-extension /workdir/ms-python.vsix &&\
+   /workdir/code-server/code-server --install-extension /workdir/ms-Vetur.vsix &&\
+   /workdir/code-server/code-server --install-extension /workdir/ms-Vue2Snippets.vsix &&\
+   /workdir/code-server/code-server --install-extension /workdir/ms-AutoCloseTag.vsix &&\
+   /workdir/code-server/code-server --install-extension /workdir/ms-AutoRenameTag.vsix &&\
    rm -f /workdir/code-server-*.tar.gz /workdir/ms-go.vsix /workdir/ms-python.vsix /workdir/ms-Vetur.vsix /workdir/ms-Vue2Snippets.vsix /workdir/ms-AutoCloseTag.vsix /workdir/ms-AutoRenameTag.vsix &&\
    npm config set registry http://registry.npm.taobao.org &&\
    sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories &&\
@@ -37,4 +39,4 @@ ENV GOPROXY https://goproxy.cn
 ENV CGO_ENABLED 0
 EXPOSE 8080
 WORKDIR /home/project/
-CMD ["dumb-init","node","/workdir/code-server/out/node/entry.js","/home/project/","--host","localhost","--auth","password"]
+CMD ["dumb-init","/workdir/code-server/code-server","/home/project/","--host","localhost","--auth","password"]
