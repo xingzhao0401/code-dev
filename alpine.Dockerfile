@@ -37,4 +37,4 @@ ENV GOPROXY https://goproxy.cn
 ENV CGO_ENABLED 0
 EXPOSE 8080
 WORKDIR /home/project/
-CMD ["dumb-init","node","/workdir/code-server/out/node/entry.js","/home/project/","--host","0.0.0.0","--auth","password"]
+CMD ["dumb-init","node","/workdir/code-server/out/node/entry.js","/home/project/","--host","localhost","--auth","password"]
