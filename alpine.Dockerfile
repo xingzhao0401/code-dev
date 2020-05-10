@@ -8,7 +8,7 @@ ENV Vue2Snippets_EXTERN_VERSION 0.1.11
 ENV AutoCloseTag_EXTERN_VERSION 0.5.5
 ENV AutoRenameTag_EXTERN_VERSION 0.1.0
 
-RUN apk add --no-cache vim bash go python python-dev py2-pip python3 python3-dev nodejs npm dumb-init openssl musl-dev  &&\
+RUN apk add --no-cache vim bash go python python-dev py2-pip python3 python3-dev nodejs npm dumb-init openssl musl-dev git &&\
     ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2 && \
     mkdir -p /home/project/ && mkdir -p /workdir && cd /workdir/ && \
    wget https://github.com/cdr/code-server/releases/download/$CODE_SERVER_VERSION/code-server-$CODE_SERVER_VERSION-linux-x86_64.tar.gz && \
