@@ -7,7 +7,7 @@ ENV Vetur_EXTERN_VERSION 0.24.0
 ENV Vue2Snippets_EXTERN_VERSION 0.1.11
 ENV AutoCloseTag_EXTERN_VERSION 0.5.5
 ENV AutoRenameTag_EXTERN_VERSION 0.1.0
-ENV PORT 8090
+
 RUN apk add --no-cache vim bash go python python-dev py2-pip python3 python3-dev nodejs yarn npm dumb-init openssl musl-dev git &&\
     ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2 && \
     mkdir -p /home/project/ && mkdir -p /workdir && cd /workdir/ && \
@@ -37,6 +37,8 @@ ENV PASSWORD 123456
 ENV PS1 \\u@\\w\\$
 ENV GOPROXY https://goproxy.cn
 ENV CGO_ENABLED 0
+ENV PORT 8090
 EXPOSE 8080
+EXPOSE 8090
 WORKDIR /home/project/
 CMD ["dumb-init","/workdir/code-server/code-server","/home/project/","--host","0.0.0.0","--auth","password","--disable-updates"]
