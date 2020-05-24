@@ -42,4 +42,4 @@ ENV PORT 8090
 EXPOSE 8080
 EXPOSE 8090
 WORKDIR /home/project/
-CMD ["dumb-init","/workdir/code-server/code-server","/home/project/","--host","0.0.0.0:8080","--auth","password","--disable-updates"]
+CMD ["dumb-init","/workdir/code-server/code-server","/home/project/","--bind-addr","0.0.0.0:8080","--auth","password","--disable-updates"]
