@@ -7,8 +7,9 @@ ENV Vetur_EXTERN_VERSION 0.24.0
 ENV Vue2Snippets_EXTERN_VERSION 0.1.11
 ENV AutoCloseTag_EXTERN_VERSION 0.5.5
 ENV AutoRenameTag_EXTERN_VERSION 0.1.0
+ENV PERL_DEBUG_EXTERN_VERSION 0.6.3
 
-RUN apk add --no-cache vim bash go python python-dev py2-pip python3 python3-dev nodejs yarn npm dumb-init openssl musl-dev git &&\
+RUN apk add --no-cache vim bash go python python-dev py2-pip python3 python3-dev nodejs yarn npm dumb-init openssl musl-dev git perl-parallel-forkmanager perl &&\
     ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2 && \
     mkdir -p /home/project/ && mkdir -p /workdir && cd /workdir/ && \
    wget https://github.com/cdr/code-server/releases/download/$CODE_SERVER_VERSION/code-server-$CODE_SERVER_VERSION-linux-x86_64.tar.gz && \
@@ -22,12 +23,14 @@ RUN apk add --no-cache vim bash go python python-dev py2-pip python3 python3-dev
    wget -O ms-Vue2Snippets.vsix https://github.com/hollowtree/vscode-vue-snippets/releases/download/v$Vue2Snippets_EXTERN_VERSION/vue-snippets-$Vue2Snippets_EXTERN_VERSION.vsix &&\
    wget -O ms-AutoCloseTag.vsix  https://github.com/formulahendry/vscode-auto-close-tag/releases/download/$AutoCloseTag_EXTERN_VERSION/auto-close-tag-$AutoCloseTag_EXTERN_VERSION.vsix &&\
    wget -O ms-AutoRenameTag.vsix  https://github.com/formulahendry/vscode-auto-rename-tag/releases/download/$AutoRenameTag_EXTERN_VERSION/auto-rename-tag-$AutoRenameTag_EXTERN_VERSION.vsix &&\
+   wget -O perl-debug.vsix https://github.com/raix/vscode-perl-debug/releases/download/v$PERL_DEBUG_EXTERN_VERSION/mortenhenriksen.perl-debug.vsix  &&\
    /workdir/code-server/code-server --install-extension /workdir/ms-go.vsix &&\
    /workdir/code-server/code-server --install-extension /workdir/ms-python.vsix &&\
    /workdir/code-server/code-server --install-extension /workdir/ms-Vetur.vsix &&\
    /workdir/code-server/code-server --install-extension /workdir/ms-Vue2Snippets.vsix &&\
    /workdir/code-server/code-server --install-extension /workdir/ms-AutoCloseTag.vsix &&\
    /workdir/code-server/code-server --install-extension /workdir/ms-AutoRenameTag.vsix &&\
+   /workdir/code-server/code-server --install-extension /workdir/perl-debug.vsix &&\
    rm -f /workdir/code-server-*.tar.gz /workdir/ms-go.vsix /workdir/ms-python.vsix /workdir/ms-Vetur.vsix /workdir/ms-Vue2Snippets.vsix /workdir/ms-AutoCloseTag.vsix /workdir/ms-AutoRenameTag.vsix &&\
    npm config set registry http://registry.npm.taobao.org &&\
    yarn config set registry https://registry.npm.taobao.org/ &&\
