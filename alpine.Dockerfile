@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.12.0
 LABEL description="这是一个基于alpine、code-server的开发环境" by="xingzhao0401" email="234454166@qq.com"
 ENV CODE_SERVER_VERSION 3.2.0
 ENV GO_EXTERN_VERSION 0.14.3
