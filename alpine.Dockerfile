@@ -8,6 +8,7 @@ ENV Vue2Snippets_EXTERN_VERSION 0.1.11
 ENV AutoCloseTag_EXTERN_VERSION 0.5.5
 ENV AutoRenameTag_EXTERN_VERSION 0.1.0
 ENV PERL_DEBUG_EXTERN_VERSION 0.6.3
+ENV CPPTOOLS_VERSION 0.29.0
 
 RUN apk upgrade &&\
     apk add --no-cache vim bash go python2 python2-dev python3 python3-dev nodejs yarn npm dumb-init openssl musl-dev git perl-parallel-forkmanager perl &&\
@@ -25,6 +26,7 @@ RUN apk upgrade &&\
    wget -O ms-AutoCloseTag.vsix  https://github.com/formulahendry/vscode-auto-close-tag/releases/download/$AutoCloseTag_EXTERN_VERSION/auto-close-tag-$AutoCloseTag_EXTERN_VERSION.vsix &&\
    wget -O ms-AutoRenameTag.vsix  https://github.com/formulahendry/vscode-auto-rename-tag/releases/download/$AutoRenameTag_EXTERN_VERSION/auto-rename-tag-$AutoRenameTag_EXTERN_VERSION.vsix &&\
    wget -O perl-debug.vsix https://github.com/raix/vscode-perl-debug/releases/download/v$PERL_DEBUG_EXTERN_VERSION/mortenhenriksen.perl-debug.vsix  &&\
+   wget -O cpptools.vsix https://github.com/microsoft/vscode-cpptools/releases/download/$CPPTOOLS_VERSION/cpptools-linux.vsix &&\
    /workdir/code-server/code-server --install-extension /workdir/ms-go.vsix &&\
    /workdir/code-server/code-server --install-extension /workdir/ms-python.vsix &&\
    /workdir/code-server/code-server --install-extension /workdir/ms-Vetur.vsix &&\
@@ -32,7 +34,8 @@ RUN apk upgrade &&\
    /workdir/code-server/code-server --install-extension /workdir/ms-AutoCloseTag.vsix &&\
    /workdir/code-server/code-server --install-extension /workdir/ms-AutoRenameTag.vsix &&\
    /workdir/code-server/code-server --install-extension /workdir/perl-debug.vsix &&\
-   rm -f /workdir/code-server-*.tar.gz /workdir/ms-go.vsix /workdir/ms-python.vsix /workdir/ms-Vetur.vsix /workdir/ms-Vue2Snippets.vsix /workdir/ms-AutoCloseTag.vsix /workdir/ms-AutoRenameTag.vsix &&\
+   /workdir/code-server/code-server --install-extension /workdir/cpptools.vsix &&\
+   rm -f /workdir/code-server-*.tar.gz /workdir/*.vsix &&\
    npm config set registry http://registry.npm.taobao.org &&\
    yarn config set registry https://registry.npm.taobao.org/ &&\
    sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories &&\
