@@ -17,8 +17,8 @@ RUN apk upgrade &&\
    wget https://github.com/cdr/code-server/releases/download/$CODE_SERVER_VERSION/code-server-$CODE_SERVER_VERSION-linux-x86_64.tar.gz && \
    tar xzvf code-server-$CODE_SERVER_VERSION-linux-x86_64.tar.gz && \
    ln -s /workdir/code-server-$CODE_SERVER_VERSION-linux-x86_64 /workdir/code-server && \
-   rm -f /workdir/code-server/node && \
-   ln -s /usr/bin/node /workdir/code-server/node && \
+   rm -f /workdir/code-server/lib/node && \
+   ln -s /usr/bin/node /workdir/code-server/lib/node && \
    wget -O ms-go.vsix https://github.com/microsoft/vscode-go/releases/download/$GO_EXTERN_VERSION/Go-$GO_EXTERN_VERSION.vsix &&\
    wget -O ms-python.vsix https://github.com/microsoft/vscode-python/releases/download/$PYTHON_EXTERN_VERSION/ms-python-release.vsix && \
    wget -O ms-Vetur.vsix  https://github.com/vuejs/vetur/releases/download/v$Vetur_EXTERN_VERSION/vetur-$Vetur_EXTERN_VERSION.vsix &&\
