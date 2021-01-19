@@ -18,7 +18,7 @@ apt update &&\
 apt-get install -y golang-go &&\
 apt-get clean &&\
 wget http://jaist.dl.sourceforge.net/project/kmphpfm/mwget/0.1/mwget_0.1.0.orig.tar.bz2 &&\
-tar -xjvf mwget_0.1.0.orig.tar.bz2 && cd mwget_0.1.0.orig && ./configure &&
+tar -xjvf mwget_0.1.0.orig.tar.bz2 && cd mwget_0.1.0.orig && ./configure &&\
  sed -i '/<iostream>/a #include <cstring>' src/httpplugin.cpp &&\
  sed -i '/<iostream>/a #include <cstring>' src/ftpplugin.cpp &&\
  sed -i '/<sys\/types.h>/a #include <cstring>' src/downloader.cpp &&\
