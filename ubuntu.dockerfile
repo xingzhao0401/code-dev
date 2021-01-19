@@ -23,7 +23,7 @@ tar -xjvf mwget_0.1.0.orig.tar.bz2 && cd mwget_0.1.0.orig && ./configure &&\
  sed -i '/<iostream>/a #include <cstring>' src/ftpplugin.cpp &&\
  sed -i '/<sys\/types.h>/a #include <cstring>' src/downloader.cpp &&\
  make && make install &&\
-mwget -n 10 https://github.com/cdr/code-server/releases/download/v3.8.0/code-server_3.8.0_amd64.deb &&\
+wget https://github.com/cdr/code-server/releases/download/v3.8.0/code-server_3.8.0_amd64.deb &&\
 dpkg -i code-server_3.8.0_amd64.deb && cd .. && rm -rf mwget_0.1.0.orig
 ENV PASSWORD 123456
 ENV PS1 \\u@\\w\\$
