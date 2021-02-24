@@ -27,7 +27,7 @@ wget https://github.com/cdr/code-server/releases/download/v3.8.0/code-server_3.8
 dpkg -i code-server_3.8.0_amd64.deb && cd .. && rm -rf mwget_0.1.0.orig
 ENV PASSWORD 123456
 ENV GOPROXY https://goproxy.cn
-ENV GO111MODULE on
+ENV GO111MODULE off
 ENV CGO_ENABLED 0
 EXPOSE 8080
 EXPOSE 8090
