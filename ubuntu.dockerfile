@@ -26,11 +26,9 @@ tar -xjvf mwget_0.1.0.orig.tar.bz2 && cd mwget_0.1.0.orig && ./configure &&\
 wget https://github.com/cdr/code-server/releases/download/v3.8.0/code-server_3.8.0_amd64.deb &&\
 dpkg -i code-server_3.8.0_amd64.deb && cd .. && rm -rf mwget_0.1.0.orig
 ENV PASSWORD 123456
-ENV PS1 \\u@\\w\\$
 ENV GOPROXY https://goproxy.cn
 ENV GO111MODULE on
 ENV CGO_ENABLED 0
-ENV PORT 8090
 EXPOSE 8080
 EXPOSE 8090
 WORKDIR /home/project/
