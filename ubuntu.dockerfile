@@ -11,7 +11,7 @@ echo deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted unive
 echo deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse >> /etc/apt/sources.list &&\
 apt update &&\
 DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata &&\
-apt-get install -y wget build-essential pkg-config libssl-dev software-properties-common language-pack-zh-hans &&\
+apt-get install -y wget build-essential pkg-config libssl-dev software-properties-common language-pack-zh-hans git &&\
 apt upgrade -y intltool &&\
 add-apt-repository ppa:longsleep/golang-backports &&\
 apt update &&\
@@ -31,6 +31,9 @@ rm -f go-0.22.1.vsix &&\
 wget https://github.com/microsoft/vscode-cpptools/releases/download/1.1.3/cpptools-linux.vsix &&\
 code-server --install-extension cpptools-linux.vsix &&\
 rm -f cpptools-linux.vsix
+wget https://github.com/microsoft/vscode-python/releases/download/2021.2.582707922/ms-python-release.vsix &&\
+code-server --install-extension ms-python-release.vsix &&\
+rm -f ms-python-release.vsix
 
 ENV LANG "zh_CN.UTF-8"
 ENV LANGUAGE "zh_CN:zh:en_US:en"
