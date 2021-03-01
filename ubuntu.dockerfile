@@ -24,7 +24,11 @@ tar -xjvf mwget_0.1.0.orig.tar.bz2 && cd mwget_0.1.0.orig && ./configure &&\
  sed -i '/<sys\/types.h>/a #include <cstring>' src/downloader.cpp &&\
  make && make install &&\
 wget https://github.com/cdr/code-server/releases/download/v3.8.0/code-server_3.8.0_amd64.deb &&\
-dpkg -i code-server_3.8.0_amd64.deb && cd .. && rm -rf mwget_0.1.0.orig
+dpkg -i code-server_3.8.0_amd64.deb && cd .. && rm -rf mwget_0.1.0.orig &&\
+wget https://github.com/golang/vscode-go/releases/download/v0.22.1/go-0.22.1.vsix &&\
+code-server --install-extension go-0.22.1.vsix &&\
+rm -f go-0.22.1.vsix
+
 ENV LANG "zh_CN.UTF-8"
 ENV LANGUAGE "zh_CN:zh:en_US:en"
 ENV PASSWORD 123456
