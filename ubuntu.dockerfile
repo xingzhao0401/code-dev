@@ -11,7 +11,7 @@ echo deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted unive
 echo deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse >> /etc/apt/sources.list &&\
 apt update &&\
 DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata &&\
-apt-get install -y wget build-essential pkg-config libssl-dev software-properties-common &&\
+apt-get install -y wget build-essential pkg-config libssl-dev software-properties-common language-pack-zh-hans &&\
 apt upgrade -y intltool &&\
 add-apt-repository ppa:longsleep/golang-backports &&\
 apt update &&\
@@ -25,6 +25,8 @@ tar -xjvf mwget_0.1.0.orig.tar.bz2 && cd mwget_0.1.0.orig && ./configure &&\
  make && make install &&\
 wget https://github.com/cdr/code-server/releases/download/v3.8.0/code-server_3.8.0_amd64.deb &&\
 dpkg -i code-server_3.8.0_amd64.deb && cd .. && rm -rf mwget_0.1.0.orig
+ENV LANG "zh_CN.UTF-8"
+ENV LANGUAGE "zh_CN:zh:en_US:en"
 ENV PASSWORD 123456
 ENV GOPROXY https://goproxy.cn
 ENV GO111MODULE off
