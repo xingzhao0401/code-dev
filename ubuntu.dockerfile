@@ -30,7 +30,7 @@ code-server --install-extension go-0.22.1.vsix &&\
 rm -f go-0.22.1.vsix &&\
 wget https://github.com/microsoft/vscode-cpptools/releases/download/1.1.3/cpptools-linux.vsix &&\
 code-server --install-extension cpptools-linux.vsix &&\
-rm -f cpptools-linux.vsix
+rm -f cpptools-linux.vsix &&\
 wget https://github.com/microsoft/vscode-python/releases/download/2021.2.582707922/ms-python-release.vsix &&\
 code-server --install-extension ms-python-release.vsix &&\
 rm -f ms-python-release.vsix
@@ -44,4 +44,4 @@ ENV CGO_ENABLED 0
 EXPOSE 8080
 EXPOSE 8090
 WORKDIR /home/project/
-CMD ["code-server","/home/project/","--bind-addr","0.0.0.0:8080","--auth","password"]
+CMD ["sh" ,"-c","code-server /home/project/ --bind-addr 0.0.0.0:8080 --auth password"]
